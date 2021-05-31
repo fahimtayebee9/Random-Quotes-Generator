@@ -222,3 +222,22 @@ function getRandomQuote(event){
 /***
  * click event listener for the print quote button
  ***/
+
+// FOR GETTING TAG suggetions
+searchText.addEventListener('keyup', searchSuggetion);
+
+// FOR SHOWING SEARCHED TAG QUOTES
+searchBtn.addEventListener('click', search);
+
+// FOR GETTING RANDOM QUOTE ON BUTTON CLICK
+loadBtn.addEventListener('click', function(){
+    mainBody.innerHTML = '';
+    const qoute = getRandomQuote();
+    printQuote(qoute);
+});
+
+// FOR GETTING RANDOM QUOTE ON LOAD
+window.onload = function(){
+    const qoute = getRandomQuote();
+    printQuote(qoute);
+};
