@@ -119,11 +119,54 @@ function searchSuggetion(event){
     }
 }
 
-
-
 /***
 * `Search Button Action`
 ***/
+function search(event){
+    event.preventDefault();
+    const searchValue = searchText.value;
+    if(Boolean(searchValue)){
+        mainBody.innerHTML = '';
+        const suggetions = quotes.filter(function(quote){
+            return quote.tag.toLowerCase().includes(searchValue.toLowerCase());
+        });
+
+        suggetions.forEach(function(keys){
+            const quoteDiv = document.createElement('div');
+            quoteDiv.classList.add('container');
+            const quoteBox = document.createElement('div');
+            quoteDiv.classList.add('quote-box');
+            const quoteP = document.createElement('p');
+            quoteP.classList.add('quote');
+            quoteP.innerHTML = keys.quote;
+            const sourceP = document.createElement('p');
+            sourceP.classList.add('source');
+            sourceP.innerHTML = keys.source;
+            
+            if(Boolean(keys.citation)){
+                const citationSp = document.createElement('span');
+                citationSp.classList.add('citation');
+                citationSp.innerHTML = keys.citation;
+                sourceP.appendChild(citationSp);
+            }
+            if(Boolean(keys.year)){
+                const yearSp = document.createElement('span');
+                yearSp.classList.add('year');
+                yearSp.innerHTML = keys.year;
+                sourceP.appendChild(yearSp);
+            }
+
+            quoteBox.appendChild(quoteP);
+            quoteBox.appendChild(sourceP);
+            quoteDiv.appendChild(quoteBox);
+
+            mainBody.appendChild(quoteDiv);
+        });
+    }
+    else{
+        suggetionsContainer.innerHTML = '';
+    }
+}
 
 /***
  * `getRandomQuote` function
