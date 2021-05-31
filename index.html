@@ -22,9 +22,12 @@
           </div>
           <div class="col-md-4">
             <form action="" method="get">
-              <div class="form-group d-flex">
-                <input type="text" class="form-control" id="search" name="searchs" placeholder="Search By Tag">
-                <button class="btn btn-dark" id="search-btn" >Search</button>
+              <div class="form-group">
+                <div class="d-flex">
+                  <input type="text" class="form-control" id="search" name="searchs" placeholder="Search By Tag">
+                  <button class="btn btn-dark" id="search-btn" >Search</button>
+                </div>
+                <div class="suggetions d-block" ></div>
               </div>
             </form>
           </div>
@@ -32,17 +35,18 @@
             <button id="load-quote" class="load-quote">Show another quote</button>
           </div>
         </div>
-
       </div>
     </header>
 
-    <div class="container">
-      <div id="quote-box" class="quote-box">
-        <p class="quote">Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.</p>
-        <p class="source">Patrick McKenzie<span class="citation">Twitter</span><span class="year">2016</span></p>
-      </div>
-    </div>
-
+    <section class="main-container">
+      <!-- <div class="container">
+        <div id="quote-box" class="quote-box">
+          <p class="quote">Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.</p>
+          <p class="source">Patrick McKenzie<span class="citation">Twitter</span><span class="year">2016</span></p>
+        </div>
+      </div> -->
+    </section>
+    
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     
