@@ -171,6 +171,15 @@ function search(event){
 /***
  * `getRandomQuote` function
  ***/
+function getRandomQuote(event){
+    if(quotes.length > 0){
+        const quoteObj = {
+            qt: quotes[Math.floor(Math.random() * quotes.length)],
+            clr: colors[Math.floor(Math.random() * colors.length)]
+        }
+        return quoteObj;
+    }
+}
 
 /***
  * `printQuote` function
