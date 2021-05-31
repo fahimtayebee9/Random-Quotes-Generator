@@ -89,6 +89,37 @@ const suggetionsContainer   = document.querySelector(".suggetions");
 const loadBtn               = document.getElementById("load-quote");
 const mainBody              = document.querySelector(".main-container");
 
+/***
+* `searchSuggetion` function
+***/
+function searchSuggetion(event){
+    const searchValue = searchText.value;
+    if(Boolean(searchValue)){
+        const suggetions = quotes.filter(function(quote){
+            return quote.tag.toLowerCase().includes(searchValue.toLowerCase());
+        });
+
+        let prevTag = "";
+        var uniqueKeys = suggetions.filter(function(value, index, arr){ 
+            if(value.tag == prevTag){ }
+            else{
+                prevTag = value.tag;
+                return value.tag;
+            }
+        });
+
+        uniqueKeys.forEach(function(keys){
+            const suggetionDiv = document.createElement('div');
+            suggetionDiv.innerHTML = keys.tag;
+            suggetionsContainer.appendChild(suggetionDiv);
+        });
+    }
+    else{
+        suggetionsContainer.innerHTML = '';
+    }
+}
+
+
 
 /***
 * `Search Button Action`
