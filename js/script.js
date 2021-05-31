@@ -241,3 +241,10 @@ window.onload = function(){
     const qoute = getRandomQuote();
     printQuote(qoute);
 };
+
+// CHANGE QUOTE AFTER 5s
+setInterval(function(){
+    mainBody.innerHTML = '';
+    const qoute = getRandomQuote();
+    printQuote(qoute);
+}, 5000);
