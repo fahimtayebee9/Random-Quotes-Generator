@@ -184,7 +184,40 @@ function getRandomQuote(event){
 /***
  * `printQuote` function
  ***/
+ function printQuote(quote){
+    const quoteContent = quote.qt;
+    const quoteDiv = document.createElement('div');
+    quoteDiv.classList.add('container');
+    console.log(quote.clr);
+    quoteDiv.style.background = quote.clr;
+    const quoteBox = document.createElement('div');
+    quoteBox.classList.add('quote-box');
+    const quoteP = document.createElement('p');
+    quoteP.classList.add('quote');
+    quoteP.innerHTML = quoteContent.quote;
+    const sourceP = document.createElement('p');
+    sourceP.classList.add('source');
+    sourceP.innerHTML = quoteContent.source;
+    
+    if(Boolean(quoteContent.citation)){
+        const citationSp = document.createElement('span');
+        citationSp.classList.add('citation');
+        citationSp.innerHTML = quoteContent.citation;
+        sourceP.appendChild(citationSp);
+    }
+    if(Boolean(quoteContent.year)){
+        const yearSp = document.createElement('span');
+        yearSp.classList.add('year');
+        yearSp.innerHTML = quoteContent.year;
+        sourceP.appendChild(yearSp);
+    }
 
+    quoteBox.appendChild(quoteP);
+    quoteBox.appendChild(sourceP);
+    quoteDiv.appendChild(quoteBox);
+
+    mainBody.appendChild(quoteDiv);
+}
 
 /***
  * click event listener for the print quote button
