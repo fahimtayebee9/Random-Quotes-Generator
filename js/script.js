@@ -80,6 +80,17 @@
 ];
 
 /***
+* Getting All Elements
+***/
+
+const searchText            = document.querySelector("#search");
+const searchBtn             = document.querySelector("#search-btn");
+const suggetionsContainer   = document.querySelector(".suggetions");
+const loadBtn               = document.getElementById("load-quote");
+const mainBody              = document.querySelector(".main-container");
+
+
+/***
 * `Search Button Action`
 ***/
 
