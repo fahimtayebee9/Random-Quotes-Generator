@@ -21,7 +21,7 @@ const colors = [
  * `quotes` array
  ***/
 
- const quotes = [
+const quotes = [
     {
         quote: "Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking.",
         source: "Steve Jobs",
@@ -100,6 +100,7 @@ const colors = [
 
 const searchText            = document.querySelector("#search");
 const searchBtn             = document.querySelector("#search-btn");
+const autoSearch            = document.querySelector("#autoSearch");
 const suggetionsContainer   = document.querySelector(".suggetions");
 const loadBtn               = document.getElementById("load-quote");
 const mainBody              = document.querySelector(".main-container");
@@ -114,17 +115,20 @@ function searchSuggetion(event){
             return quote.tag.toLowerCase().includes(searchValue.toLowerCase());
         });
 
-        let prevTag = "";
+        let prevTag = [];
         var uniqueKeys = suggetions.filter(function(value, index, arr){ 
-            if(value.tag == prevTag){ }
+            if(prevTag.includes(value.tag)){ 
+                return;
+            }
             else{
-                prevTag = value.tag;
+                prevTag.push(value.tag);
                 return value.tag;
             }
         });
 
         uniqueKeys.forEach(function(keys){
             const suggetionDiv = document.createElement('div');
+            suggetionDiv.classList.add('suggetionDiv');
             suggetionDiv.innerHTML = keys.tag;
             suggetionsContainer.appendChild(suggetionDiv);
         });
@@ -184,6 +188,56 @@ function search(event){
 }
 
 /***
+* `Live Search Action`
+***/
+function liveSearch(event){
+    event.preventDefault();
+    const searchValue = autoSearch.value;
+    if(Boolean(searchValue)){
+        mainBody.innerHTML = '';
+        const suggetions = quotes.filter(function(quote){
+            return quote.tag.toLowerCase().includes(searchValue.toLowerCase());
+        });
+
+        suggetions.forEach(function(keys){
+            const quoteDiv = document.createElement('div');
+            quoteDiv.classList.add('container');
+            const quoteBox = document.createElement('div');
+            quoteBox.classList.add('quote-box');
+            const quoteP = document.createElement('p');
+            quoteP.classList.add('quote');
+            quoteP.innerHTML = keys.quote;
+            const sourceP = document.createElement('p');
+            sourceP.classList.add('source');
+            sourceP.innerHTML = keys.source;
+            
+            if(Boolean(keys.citation)){
+                const citationSp = document.createElement('span');
+                citationSp.classList.add('citation');
+                citationSp.innerHTML = keys.citation;
+                sourceP.appendChild(citationSp);
+            }
+            if(Boolean(keys.year)){
+                const yearSp = document.createElement('span');
+                yearSp.classList.add('year');
+                yearSp.innerHTML = keys.year;
+                sourceP.appendChild(yearSp);
+            }
+
+            quoteBox.appendChild(quoteP);
+            quoteBox.appendChild(sourceP);
+            quoteDiv.appendChild(quoteBox);
+
+            mainBody.appendChild(quoteDiv);
+        });
+    }
+    else{
+        mainBody.innerHTML = '';
+        printQuote(getRandomQuote());
+    }
+}
+
+/***
  * `getRandomQuote` function
  ***/
 function getRandomQuote(event){
@@ -199,7 +253,7 @@ function getRandomQuote(event){
 /***
  * `printQuote` function
  ***/
- function printQuote(quote){
+function printQuote(quote){
     const quoteContent = quote.qt;
     const quoteDiv = document.createElement('div');
     quoteDiv.classList.add('container');
@@ -240,6 +294,9 @@ function getRandomQuote(event){
 
 // FOR GETTING TAG suggetions
 searchText.addEventListener('keyup', searchSuggetion);
+
+// FOR SHOWING AUTO SEARCH DATA
+autoSearch.addEventListener('keyup', liveSearch);
 
 // FOR SHOWING SEARCHED TAG QUOTES
 searchBtn.addEventListener('click', search);
