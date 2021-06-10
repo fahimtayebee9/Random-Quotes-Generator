@@ -180,6 +180,7 @@ function search(event){
             quoteDiv.appendChild(quoteBox);
 
             mainBody.appendChild(quoteDiv);
+            suggetionsContainer.innerHTML = '';
         });
     }
     else{
