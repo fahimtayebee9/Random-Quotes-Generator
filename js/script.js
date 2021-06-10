@@ -319,4 +319,4 @@ setInterval(function(){
     mainBody.innerHTML = '';
     const qoute = getRandomQuote();
     printQuote(qoute);
-}, 5000);
+}, 20000);
